@@ -1,14 +1,16 @@
 import time
 import pikepdf
 import itertools
+import concurrent.futures
 
-arq_pdf = "/home/gustavo/Downloads/teste.pdf"
+arq_pdf = "/home/gustavo/Downloads/digitos.PDF"
 maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'
-caracteres = minusculos + maiusculos + digitos
+caracteres = digitos
 combinacoes = []
-tamanho = 5
+tamanho = 6
+num_threads = 1
 
 
 def lista_senha(arq):
@@ -18,6 +20,10 @@ def lista_senha(arq):
         total_passwords = len(passwords_list)
 
 
+def terminate(cod):
+    quit(cod)
+
+
 def gerar(size):
     # Gerar todas as combinações possĩveis por força bruta
     for comb in itertools.product(caracteres, repeat=size):
@@ -25,32 +31,45 @@ def gerar(size):
         yield senha
 
 
+def quebrar_senha(password):
+    try:
+        with pikepdf.open(arq_pdf, password=password.strip()):
+            return password, None
+    except pikepdf.PasswordError:
+        return None, password
+    except FileNotFoundError:
+        print(f'Arquivo {arq_pdf} não encontrado.')
+        terminate(2)
+
+
 def main():
     total_passwords = len(caracteres) ** tamanho
     inicio = time.time()
-    for index, password in enumerate(gerar(tamanho)):
-        try:
-            with pikepdf.open(arq_pdf, password=password.strip()) as pdf_file:
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
+        tentativas = gerar(tamanho)
+        resultados = executor.map(quebrar_senha, tentativas)
+
+        for index, password in enumerate(resultados):
+            if password[0] is not None:
                 print("\n\n-----ENCONTRADO-----")
-                print("File is Unlocked and the password is: ", password)
-                break
-        # Se o arquivo não for encontrado
-        except FileNotFoundError:
-            print(f'\nArquivo {arq_pdf} não encontradao.')
-            quit(2)
-        # Se a senha falhar
-        except pikepdf.PasswordError:
-            scanning = (index / total_passwords) * 100
-            percentil = "{:.3f}".format(round(scanning, 3))
-            tempo_decorrido = time.time() - inicio
-            senhas_restantes = total_passwords - index - 1
-            tentativas_por_segundo = index / tempo_decorrido if tempo_decorrido > 0 else 0
-            tempo_estimado = senhas_restantes / tentativas_por_segundo if tentativas_por_segundo > 0 else 0
-            print(f'\rProgresso total: {percentil} '
-                  f'--> Senha atual: {password} '
-                  f'--> Tempo estimado = {tempo_estimado / 3600}', end='')
-            continue
+                print("A senha encontrada é: ", password[0])
+                terminate(0)
+            else:
+                scanning = (index / len(caracteres) ** tamanho) * 100
+                percentil = "{:.3f}".format(round(scanning, 3))
+                tempo_decorrido = time.time() - inicio
+                senhas_restantes = len(caracteres) ** tamanho - index - 1
+                tentativas_por_segundo = index / tempo_decorrido if tempo_decorrido > 0 else 0
+                tempo_estimado = senhas_restantes / tentativas_por_segundo if tentativas_por_segundo > 0 else 0
+                print(f'\rProgresso total: {percentil} '
+                      f'--> Senha atual: {password[1]} '
+                      f'--> Tempo estimado: {tempo_estimado / 60:.2f} minutos.', end='')
+
+    tempo_decorrido = time.time() - inicio
+    print(f"\nTempo decorrido: {tempo_decorrido:.2f} segundos")
 
 
 if __name__ == '__main__':
     main()
+    quit(5)

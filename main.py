@@ -12,13 +12,14 @@ tamanho = 5
 
 
 def lista_senha(arq):
-    # Carregar lista de senhas
+    # Carregar lista de senhas pré-definidas
     with open(arq) as file:
         passwords_list = file.readlines()
         total_passwords = len(passwords_list)
 
 
 def gerar(size):
+    # Gerar todas as combinações possĩveis por força bruta
     for comb in itertools.product(caracteres, repeat=size):
         senha = ''.join(comb)
         yield senha

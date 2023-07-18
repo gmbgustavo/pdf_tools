@@ -4,11 +4,11 @@ import pikepdf
 from colorama import Fore
 
 
-arq_pdf = 'dados/teste.pdf'
+arq_pdf = 'dados/digitos.PDF'
 maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'
-caracteres = minusculos + digitos
+caracteres = digitos
 tamanho = 6
 
 
@@ -28,7 +28,7 @@ def quebrar_senha(password):
         with pikepdf.open(arq_pdf, password=password.strip()):
             return password, None
     except pikepdf.PasswordError:
-        return password, None
+        return None, password
     except FileNotFoundError:
         print(f'Arquivo {arq_pdf} não encontrado.')
         terminate(2)
@@ -52,11 +52,11 @@ def main():
     print(f'Numero total de combinações: {total_passwords:,}\n')
     for index, password in enumerate(gerar(tamanho)):
         resultado = quebrar_senha(password)
-        if resultado[0] is None:
-            print("\n\n-----ENCONTRADO-----")
-            print("A senha encontrada é: ", password[0])
+        if resultado[0] is not None:
+            print(Fore.LIGHTBLUE_EX + "\n\n-----ENCONTRADO-----" + Fore.WHITE)
+            print("A senha encontrada é: " + Fore.GREEN, password)
             tempo_decorrido = time.time() - inicio
-            print(f"\nTempo decorrido: {tempo_decorrido:.2f} segundos")
+            print(Fore.WHITE + "\nTempo decorrido: {tempo_decorrido:.2f} segundos")
             terminate(0)
         else:
             print_stats(index, password, inicio)

@@ -1,6 +1,7 @@
 import time
 import itertools
 import pikepdf
+from colorama import Fore
 
 
 arq_pdf = 'dados/teste.pdf'
@@ -8,7 +9,7 @@ maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'
 caracteres = minusculos + digitos
-tamanho = 3
+tamanho = 6
 
 
 def terminate(cod):
@@ -41,7 +42,7 @@ def print_stats(idx, pwd, start):
     tentativas_por_segundo = idx / tempo_decorrido if tempo_decorrido > 0 else 0
     tempo_estimado = senhas_restantes / tentativas_por_segundo if tentativas_por_segundo > 0 else 0
     print(f'\rProgresso total: {percentil} '
-          f'--> Senha atual: {pwd[1]} '
+          f'--> Senha atual: {pwd} '
           f'--> Tempo estimado: {tempo_estimado / 60:.2f} minutos.', end='')
 
 
@@ -64,5 +65,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-    print('Não encontrado no range especificado.')
+    print(Fore.RED + '\nNão encontrado no range especificado.')
     quit(5)

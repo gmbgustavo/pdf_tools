@@ -53,10 +53,10 @@ def main():
     for index, password in enumerate(gerar(tamanho)):
         resultado = quebrar_senha(password)
         if resultado[0] is not None:
-            print(Fore.LIGHTBLUE_EX + "\n\n-----ENCONTRADO-----" + Fore.WHITE)
+            print(Fore.LIGHTBLUE_EX + "\n\n-----ENCONTRADO-----" + Fore.LIGHTWHITE_EX)
             print("A senha encontrada é: " + Fore.GREEN, password)
-            tempo_decorrido = time.time() - inicio
-            print(Fore.WHITE + "\nTempo decorrido: {tempo_decorrido:.2f} segundos")
+            tempo_decorrido = (time.time() - inicio) / 60
+            print(Fore.LIGHTWHITE_EX + f"\nTempo decorrido: {tempo_decorrido:.2f} minutos")
             terminate(0)
         else:
             print_stats(index, password, inicio)

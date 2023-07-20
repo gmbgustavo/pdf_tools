@@ -54,7 +54,7 @@ def main():
         resultado = quebrar_senha(password)
         if resultado[0] is not None:
             print(Fore.LIGHTBLUE_EX + "\n\n-----ENCONTRADO-----" + Fore.LIGHTWHITE_EX)
-            print("A senha encontrada é: " + Fore.GREEN, password)
+            print("A senha encontrada é: " + Fore.LIGHTGREEN_EX, password)
             tempo_decorrido = (time.time() - inicio) / 60
             print(Fore.LIGHTWHITE_EX + f"\nTempo decorrido: {tempo_decorrido:.2f} minutos")
             terminate(0)

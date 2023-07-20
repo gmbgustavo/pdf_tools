@@ -65,5 +65,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-    print(Fore.RED + '\nNão encontrado no range especificado.')
+    print(Fore.LIGHTRED_EX + '\nNão encontrado no range especificado.')
     quit(5)

@@ -4,7 +4,7 @@ import pikepdf
 from colorama import Fore
 
 
-arq_pdf = 'dados/UNIMED.PDF'
+arq_pdf = 'dados/unimed.pdf'
 maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'
@@ -66,4 +66,4 @@ def main():
 if __name__ == '__main__':
     main()
     print(Fore.LIGHTRED_EX + '\nNão encontrado no range especificado.')
-    quit(5)
+    terminate(5)

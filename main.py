@@ -8,7 +8,7 @@ arq_pdf = 'dados/unimed.pdf'
 maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'
-caracteres = digitos
+caracteres = digitos + minusculos
 tamanho = 6
 
 

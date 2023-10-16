@@ -1,7 +1,4 @@
-# pdf_crack
-Python PDF password Brute Force
+# Ferramentas diversas para PDF
 
-Run main.py in the same directory as your .pdf to be opened. 
-This is for education only, and may not work on all .pdf files. 
-
-Written in python 3.5.1
+- Quebrador de senha através de força bruta
+- Imagems múltiplas para PDF em 1 arquivo. 

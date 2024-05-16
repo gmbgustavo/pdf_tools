@@ -4,11 +4,11 @@ import pikepdf
 from colorama import Fore
 
 
-arq_pdf = 'dados/unimed.pdf'
+arq_pdf = 'dados/2722231.pdf'
 maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'
-caracteres = digitos + minusculos
+caracteres = maiusculos
 tamanho = 6
 
 

@@ -22,3 +22,4 @@ if __name__ == "__main__":
     pasta_origem = "img"
     output_pdf = "output.pdf"
     images_to_pdf(pasta_origem, output_pdf)
+    print(f'\nFinalizado.')

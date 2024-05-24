@@ -3,12 +3,11 @@ import itertools
 import pikepdf
 from colorama import Fore
 
-
 arq_pdf = 'dados/2722231.pdf'
 maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'
-caracteres = maiusculos
+caracteres = digitos
 tamanho = 6
 
 

@@ -38,8 +38,8 @@ def print_stats(idx, pwd, start):
     percentil = "{:.3f}".format(round(scanning, 3))
     tempo_decorrido = time.time() - start
     senhas_restantes = len(caracteres) ** tamanho - idx - 1
-    tentativas_por_segundo = idx / tempo_decorrido if tempo_decorrido > 0 else 0
-    tempo_estimado = senhas_restantes / tentativas_por_segundo if tentativas_por_segundo > 0 else 0
+    per_second = idx / tempo_decorrido if tempo_decorrido > 0 else 0
+    tempo_estimado = senhas_restantes / per_second if per_second > 0 else 0
     print(f'\rProgresso total: {percentil} '
           f'--> Senha atual: {pwd} '
           f'--> Tempo estimado: {tempo_estimado / 60:.2f} minutos.', end='')

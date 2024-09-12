@@ -28,5 +28,8 @@ def converte(texto: str):
 
 
 if __name__ == "__main__":
-    saida = converte('ai não da pra acharem coisas buscando por texto, pro pereira não ficar cheretando as conversas')
-    print(saida)
+    saida = ''
+    while saida != '1':
+        saida = input('Digite o texto (1 para sair): ')
+        print(converte(saida))
+    quit(0)

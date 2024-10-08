@@ -13,7 +13,7 @@ TABELA = {"A": "Д", "a": "а",
           "S": "Ѕ", "s": "ѕ",
           "T": "Т", "t": "т",
           "W": "Ш", "w": "ш",
-          "Y": "У", "y": "у" }
+          "Y": "У", "y": "у"}
 
 
 def converte(texto: str):
@@ -24,7 +24,6 @@ def converte(texto: str):
         else:
             strout += letra
     return strout
-
 
 
 if __name__ == "__main__":

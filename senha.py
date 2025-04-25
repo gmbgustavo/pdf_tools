@@ -3,7 +3,7 @@ import itertools
 import pikepdf
 from colorama import Fore
 
-arq_pdf = 'dados/2722231.pdf'
+arq_pdf = './boleto.PDF'
 maiusculos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 minusculos = 'abcdefghijklmnopqrstuvwxyz'
 digitos = '0123456789'

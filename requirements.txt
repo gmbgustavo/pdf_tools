@@ -1,3 +1,6 @@
-colorama
-pikepdf
-fpdf
+colorama~=0.4.6
+pikepdf~=9.10.2
+fpdf~=1.7.2
+
+tabula~=1.0.5
+pandas~=2.3.1

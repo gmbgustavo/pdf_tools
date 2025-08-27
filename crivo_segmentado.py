@@ -46,8 +46,8 @@ def count_primes_in_segment(low, high, small_primes):
 if __name__ == '__main__':
     # Parâmetros do intervalo e tamanho do bloco
     start = 2
-    end = 1_000_000_000
-    block_size = 1_000_000
+    end = 100_000_000
+    block_size = 10_000
 
     # Pré-computar primos até sqrt(end)
     small_limit = int(math.sqrt(end)) + 1
@@ -68,4 +68,5 @@ if __name__ == '__main__':
         print(f"Primos no intervalo [{block_start:,} - {block_end:,}]: {primes_in_block:,}".replace(",", "."))
 
     # Exibir o total
+    print(Fore.CYAN)
     print(f"Total de primos no intervalo [{start:,} - {end:,}]: {total_primes:,}".replace(",", "."))

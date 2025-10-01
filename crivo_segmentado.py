@@ -1,5 +1,27 @@
 import math
 from colorama import Fore
+import matplotlib.pyplot as plt
+
+
+def plotar_lista(minha_lista):
+    n = len(minha_lista)
+    if n == 0:
+        print("A lista está vazia. Nada a plotar.")
+        return
+
+    # Eixo X: índices de 0 a n-1
+    x = list(range(n))
+    # Eixo Y: valores da lista
+    y = minha_lista
+
+    # Cria o gráfico
+    plt.figure(figsize=(8, 5))  # Tamanho da figura (opcional)
+    plt.plot(x, y, marker='o', linestyle='-', color='b')  # Linha com marcadores
+    plt.title('Gráfico da Lista')  # Título
+    plt.xlabel('Bloco')  # Rótulo do eixo X
+    plt.ylabel('Valor')  # Rótulo do eixo Y
+    plt.grid(True)  # Grade para facilitar a leitura
+    plt.show()  # Exibe o gráfico
 
 
 def sieve_small(limit):
@@ -60,13 +82,16 @@ if __name__ == '__main__':
 
     # Contar primos em cada bloco
     total_primes = 0
+    grafico = []
     for i in range(num_blocks):
         block_start = start + i * block_size
         block_end = min(block_start + block_size - 1, end)
         primes_in_block = count_primes_in_segment(block_start, block_end, small_primes)
         total_primes += primes_in_block
+        grafico.append(primes_in_block)
         print(f"Primos no intervalo [{block_start:,} - {block_end:,}]: {primes_in_block:,}".replace(",", "."))
 
     # Exibir o total
     print(Fore.CYAN)
     print(f"Total de primos no intervalo [{start:,} - {end:,}]: {total_primes:,}".replace(",", "."))
+    plotar_lista(grafico)

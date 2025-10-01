@@ -1,3 +1,4 @@
+
 # Gera um dump "em branco" para Mifare Classic 1K (1024 bytes)
 with open("blank.mfd", "wb") as f:
     for sector in range(16):  # 16 setores

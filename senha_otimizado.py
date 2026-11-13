@@ -48,12 +48,12 @@ import pdfcrypt
 # ------------------------------------------------------------------ constantes
 
 ARQ_PDF_PADRAO = './boleto.pdf'
-TAMANHO_PADRAO = 7
+TAMANHO_PADRAO = 6
 INTERVALO_PADRAO = 0.5
 RELATORIO_A_CADA = 64                         # tentativas entre atualizacoes do contador
 CHECAGEM_PARADA_S = 0.05                      # intervalo minimo entre consultas de parada
 POLL_S = 0.02                                 # granularidade do monitor no processo pai
-TAM_MAX_SENHA = 120                           # limite do buffer compartilhado
+TAM_MAX_SENHA = 10                           # limite do buffer compartilhado
 
 CONJUNTOS = {
     'digitos': '0123456789',
